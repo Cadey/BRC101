@@ -1,3 +1,4 @@
+
 \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 **Working Draft!**
 \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
@@ -5,40 +6,41 @@
 
 # Hashed NFTS - BRC101
 
-**BRC101 - A BitCoin Ordinal NFT standard proposal**
+**BRC101: The Bitcoin NFT Standard Proposal We Need**
 
-Many of you reading this will love the idea of NFTs on BitCoin, many others will disagree. The fact is however, the genie is out of the bottle, so lets make a solution that all parties can be OK with.
+Imagine the possibility of bringing Non-Fungible Tokens (NFTs) to Bitcoin - a revolution in its own right that is loved by some, and questioned by others. As this concept has already taken flight, we aim to create a system that caters to every stakeholder's interest.
 
 ## What should an NFT be?
-At there core, NFTs are proofs of ownership, of something, **anything**, nothing more. 
 
-The data within an NFT needs to include only the information to answer some basic questions ***Who***, ***What***, ***Where***, ***How***
+NFTs are essentially digital certificates of ownership. They can be linked to anything, or nothing at all. What's crucial is the data they carry, which should be able to answer basic questions such as:
 
  - Who issued the NFT
- - What is the content of the NFT
- - Where can the content be located
- - How can we verify the issuer and establish trust
- - How can the content be validated
+ - What is the NFT's content?
+ - Where is the content located?
+ - How do we verify the issuer and trustworthiness of the NFT?
+ - How do we validate the content of the NFT?
 
 ## What is the problem with NFTs on BitCoin today?
-As of today (6th July 2023) NFTs are being inscribed directly onto the blockchain, this however isnt the best way to do it. When you inscribe the NFT content directly into the blockchain you are creating problems down the road, problems which might not seem important today, but they will be.
 
-BitCoin is supposed to be optimal, with small amounts of data. This allows for nodes to have the smallest hardware requirements possible. Inscriptions with full NFT content on, unfortunately, breaks this.
+Currently, as of 6th July 2023, NFTs on Bitcoin have a fundamental issue. They are being engraved directly onto the blockchain, which is far from optimal. Yes, recording the NFT content directly into the blockchain ensures its permanency, but it also sets us up for future complications.
 
-This could make the miners happy, but think about the added cost to every other node on the network. Who pays for that additional space to run a node? The logical conclusion is, BitCoin has **less** nodes!
+Bitcoin is designed to be efficient, dealing in small amounts of data. This design ensures that even the most basic hardware can run a node. But storing full NFT content on Bitcoin is like trying to fit a square peg into a round hole; it just doesn't work. It increases the requirements for every node, which, in turn, may result in fewer nodes due to the elevated costs. Although miners might welcome this, the potential trade-off is a less robust network.
 
-## So why are NFTs contents being inscribed?
-While its true, the best way to ensure the entire content of an NFT is never changed or lost is to put it into a blockchain, the blockchain isnt a database. Its a history of transactions.
+## Why not inscribe NFT contents directly?
 
-Other implementations of NFTs use off-chain storage for the content, usually using IPFS. While this solution is OK, its not as perfect as people would like to think. IPFS is decentralized, to the point that you can mirror (pin) all the content if you wish, but as this content grows (which is is) the costs start to ramp up. Now only "some" of the data will be pinned....
+Many people ask: why not inscribe NFT contents directly? The answer is that while a blockchain is reliable and immutable, it's not a database. It is essentially a record of transactions.
+
+Most NFTs use off-chain storage, like IPFS, for their content. Although it's a decent solution, it's not perfect. IPFS is so decentralized that you can mirror (or "pin") all the content, but as this data grows, the costs start escalating. This leads to only a fraction of the data being pinned.
+
+In conclusion, while NFTs on Bitcoin represent a promising concept, the implementation needs careful consideration. Optimizing storage, keeping costs low, and maintaining the integrity of the network are challenges that need to be addressed for a harmonious incorporation of NFTs into Bitcoin's landscape.
 
 
 ## BRC101 - Hashed NFTS
-Since an NFT can be ***anything***, we need a standard which can represent more than just art. To do this, BRC101 uses a two step minting process. Collection creation, Asset creation.
+Given the all-encompassing nature of NFTs - their ability to represent any conceivable thing - we require a standard that expands beyond the confines of art. BRC101 addresses this need through an innovative two-step minting process: Collection Creation and Asset Creation.
 
 
-### Collection creation
-To create a collection, we need to inscribe what our collection of NFTs are. What defines what a collection is can be unique and is relevant only to the issuer and buyer relationship.
+### Collection creation: The first step
+In the journey of minting NFTs, the initial step is to establish a collection. This is where we define what our suite of NFTs will represent. The concept of a 'collection' is flexible and unique, shaped by the relationship and agreement between the issuer and the buyer.
 
 ```
 {
@@ -58,11 +60,12 @@ To create a collection, we need to inscribe what our collection of NFTs are. Wha
 | v | Issuer validation type | "dns" \| "http" |
 
 ### NFT creation
-Each NFT created in a collection references back to the **nftHashCol** by means of ordinal Id, this helps to keep the trust intact.
 
-The NFT data then only contains enough information On-Chain to keep record of the NFT and its original content.
+Each NFT minted in a collection refers back to the nftHashCol by leveraging an ordinal ID. This structure not only enhances the system's efficiency but also solidifies the element of trust.
 
-> BRC101 makes a distinction between "Content" and "MetaData". Metadata is optional, however if metadata is included, the content hash and content type should be represent the content the metadata is pointing to. The metadata type will always be interpreted as a text
+As such, the data incorporated within the NFT on-chain only contains the necessary information to maintain the record of the NFT and its original content. It is a method that values both trust and efficiency.
+
+> Under BRC101, there's a clear delineation between 'Content' and 'Metadata'. While the inclusion of metadata is optional, it plays a vital role when included. If metadata is part of an NFT, the content hash and content type should accurately represent the content to which the metadata is pointing. The type of metadata, in this scenario, is always interpreted as text. It’s a framework that values precision and clarity, ensuring that NFTs are accurately represented and recorded.
 
 ``` 
 {
@@ -91,17 +94,18 @@ The NFT data then only contains enough information On-Chain to keep record of th
 
 
 
-#### Establishing trust!
-The most important problem to solve with an NFT is establishing its authenticity, who created it, how can we verify this to be true?
+#### Authenticating NFTs: The Trust Quandary and BRC101's Solution
 
-This, realistically is different for each collection, and i cant be done "on-chain". Lets take an example, when you buy an NFT of a cat image, how do you know its the genuine cat image?  
+One of the most pressing challenges with NFTs is determining their authenticity – who created them, and how can we verify this?
 
-- Do you **trust** the marketplace you purchased it from?
-- Do you **trust** a twitter profile?
-- What do you **trust**??
+In reality, the verification process may differ for each collection, and it can't be fully executed on-chain. Take for instance, you buy an NFT linked to a cat image. How can you ascertain its authenticity?
 
-So lets go back to the basics, when you have an NFT, chances are you know somthing about the issuer. They could be a company, a person, a charity... The point is, they are **something** and they should be the ones telling you its genuine. 
+- Is it the **trust** you place in the marketplace you purchased it from?
+- Is it **trust** in a corresponding Twitter profile?
+- Or is it something else entirely that you **trust**?
 
-For this reason, the On-Chain NFT needs to reference an Off-Chain means to authenticate it. If that company goes bust, or the person dies. There will be other ways to recover this authenticity, humans are actually quite good at this. TheWayBackMachine, good old official records, etc etc. Issuers can establish any number of ways to keep the trust relationship alive!
+In essence, let's circle back to fundamentals. If you own an NFT, it's likely you have some information about its issuer – be it a company, an individual, or a charity. These entities have a presence, an identity, and they should be the ones validating the NFT's authenticity.
 
-> Some people will of course you could point to some other blockchains which use oracles to confirm a truth, but what happens when that chain no longer exists....
+That's why under BRC101, the On-Chain NFT references an Off-Chain method for authentication. If a company goes under or an individual passes away, there are still means to validate the NFT's authenticity. Humanity excels in preserving and retrieving information - be it through TheWayBackMachine, official records, or other means. Issuers can create numerous ways to sustain the trust relationship!
+
+Some may argue that other blockchains use oracles to verify truth. However, the question remains, what happens when that blockchain ceases to exist? BRC101 offers a robust, flexible solution that doesn't rely solely on one system for verification, making it a resilient choice in the dynamic world of NFTs.
