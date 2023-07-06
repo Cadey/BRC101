@@ -95,13 +95,15 @@ As such, the data incorporated within the NFT on-chain only contains the necessa
 | t | Content type | string |
 | cId | Collection ordinal ID | string |
 
-
-
 #### Authenticating NFTs: The Trust Quandary and BRC101's Solution
 
 One of the most pressing challenges with NFTs is determining their authenticity – who created them, and how can we verify this?
 
 In reality, the verification process may differ for each collection, and it can't be fully executed on-chain. Take for instance, you buy an NFT linked to a cat image. How can you ascertain its authenticity?
+
+First the easy part, how to validate the NFT's content and claim ownership. With BRC101 the NFTs content hash is part of the inscription, and so can be compared to the content you want to claim!
+
+Now how we we trust the inscription!
 
 - Is it the **trust** you place in the marketplace you purchased it from?
 - Is it **trust** in a corresponding Twitter profile?
