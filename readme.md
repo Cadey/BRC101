@@ -59,6 +59,9 @@ In the journey of minting NFTs, the initial step is to establish a collection. T
 | d | Issuer domain | string |
 | v | Issuer validation type | "dns" \| "http" |
 
+> When using DNS validation and TXT record with the ordinal ID as a value should be returned.
+> When using HTTP a .well-known/Ordinal/Collection.[OrdinalCollectionId].ord should return a 200.
+
 ### NFT creation
 
 Each NFT minted in a collection refers back to the nftHashCol by leveraging an ordinal ID. This structure not only enhances the system's efficiency but also solidifies the element of trust.
@@ -71,10 +74,10 @@ As such, the data incorporated within the NFT on-chain only contains the necessa
 {
 	"p": "nftHashItem",
 	"v": 1,
-	"cH": "98a2141d88e0a940e9ca21aa8290273998f066d9f4a845c1518d1d276735829eddfd87c13b77495cdcd5baaee8427936df2f7c5f17506656e844b3a082b8a89c",
-	"mH": "98a2141d88e0a940e9ca21aa8290273998f066d9f4a845c1518d1d276735829eddfd87c13b77495cdcd5baaee8427936df2f7c5f17506656e844b3a082b8a89c",
+	"cH": "98a2...",
+	"mH": "45c4...",
 	"n": "Super dooper cool NFT",
-	"l": "aaaaYwvVtjNFKRqHEWPChdkfM24Z1i34FmmC4uAjDdnJ7NF/338.json",
+	"l": "aaaaYwv...",
 	"lT" : "ipfs"
 	"t": "image/jpeg",
 	"cId" : 3423432432
